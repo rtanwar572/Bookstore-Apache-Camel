@@ -1,0 +1,141 @@
+openapi: 3.0.1
+info:
+  title: Rohit.UK Rest Camel Api
+  version: "1.0"
+servers:
+- url: /BookStoreApp
+tags:
+- name: /books
+paths:
+  /books/:
+    post:
+      tags:
+      - /books
+      summary: Adding Book In BookStore
+      operationId: verb1
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+        required: true
+      responses:
+        "200":
+          description: Successful
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+  /books/{id}:
+    get:
+      tags:
+      - /books
+      summary: Get Book For Given BookId
+      operationId: verb3
+      parameters:
+      - name: id
+        in: path
+        description: Id of the Book ex. 2 or 4
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+    put:
+      tags:
+      - /books
+      summary: Update Book Details
+      operationId: verb4
+      parameters:
+      - name: id
+        in: path
+        description: Get Book By Id For Updation
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+        required: true
+      responses:
+        "200":
+          description: Good Request
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+    delete:
+      tags:
+      - /books
+      summary: Delete Book For Given BookId
+      operationId: verb2
+      parameters:
+      - name: id
+        in: path
+        description: Id of the Book ex. 2 or 4...
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Good Request
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+  /books/all:
+    get:
+      tags:
+      - /books
+      summary: 'Get List Of All Books Present In BookStore '
+      operationId: verb5
+      responses:
+        "200":
+          description: Good Request
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+components:
+  schemas:
+    Book:
+      required:
+      - booTitle
+      - bookName
+      type: object
+      properties:
+        bookId:
+          type: integer
+          format: int32
+        bookName:
+          type: string
+        booTitle:
+          type: string
+        bookAuth:
+          type: string
+        publishYear:
+          type: integer
+          format: int32

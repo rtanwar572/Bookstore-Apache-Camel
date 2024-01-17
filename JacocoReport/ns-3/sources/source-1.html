@@ -1,0 +1,159 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > BookService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.Rohit.service</a>
+</div>
+
+<h1>Coverage Summary for Class: BookService (com.Rohit.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BookService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.Rohit.service;
+&nbsp;
+&nbsp;import com.Rohit.model.Book;
+&nbsp;import com.Rohit.repo.IBookRepo;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+<b class="fc">&nbsp;public class BookService {</b>
+&nbsp;    @Autowired
+&nbsp;    IBookRepo iBookRepo;
+&nbsp;
+&nbsp;    //get list mapping
+&nbsp;    public List&lt;Book&gt; getAllBooks() {
+<b class="fc">&nbsp;        return iBookRepo.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    //get mapping
+&nbsp;    public Book getBookById(Integer id) {
+<b class="fc">&nbsp;        return iBookRepo.findById(id).orElse(null);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;//post mapping
+&nbsp;    public String addBook(Book book) {
+<b class="fc">&nbsp;        iBookRepo.save(book);</b>
+<b class="fc">&nbsp;        return &quot;201 : Book added successfully&quot;;</b>
+&nbsp;    }
+&nbsp;    //delete mapping
+&nbsp;    public String deleteBook(Integer id) {
+<b class="fc">&nbsp;        if(iBookRepo.isBookExistById(id)){</b>
+<b class="fc">&nbsp;            iBookRepo.deleteById(id);</b>
+<b class="fc">&nbsp;            return &quot;200 : Book Deleted successfully !!&quot;;</b>
+&nbsp;            // Handle the case where the book with the given ID is not found
+&nbsp;        }
+<b class="fc">&nbsp;        return &quot;404 : Book Not Found !!&quot;;</b>
+&nbsp;
+&nbsp;    }
+&nbsp;    //update mapping
+&nbsp;    public String updateBookById(Integer bookId, Book updatedBook) {
+&nbsp;
+<b class="fc">&nbsp;        if (updatedBook.getBookId().equals(bookId)) {</b>
+<b class="fc">&nbsp;            iBookRepo.save(updatedBook);</b>
+<b class="fc">&nbsp;            return &quot;200 : Book updated successfully&quot;;</b>
+&nbsp;        } else {
+&nbsp;            // Handle the case where the book with the given ID is not found
+&nbsp;            // You can throw an exception or return an error response
+<b class="fc">&nbsp;            return &quot;Book not found&quot;;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-01-17 20:28</div>
+</div>
+</body>
+</html>
